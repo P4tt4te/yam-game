@@ -15,7 +15,7 @@ const HomeViewContainer = styled.section`
 
 export const HomeView = ({}) => {
   /* Access to the store, read-only */
-  const { firstDiceResult, secondDiceResult, thirdDiceResult, total } =
+  const { firstDiceResult, secondDiceResult, thirdDiceResult, result, score } =
     useSelector((state) => state.gameReducer);
 
   /* Create a newState after a dispatch */
@@ -29,7 +29,8 @@ export const HomeView = ({}) => {
         firstDiceResult={firstDiceResult}
         secondDiceResult={secondDiceResult}
         thirdDiceResult={thirdDiceResult}
-        total={total}
+        result={result}
+        score={score}
       />
     </HomeViewContainer>
   );
