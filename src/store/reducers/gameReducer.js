@@ -5,6 +5,7 @@ const gameState = {
   firstDiceResult: null,
   secondDiceResult: null,
   thirdDiceResult: null,
+  leftRolls: 20,
   total: 0,
 };
 
