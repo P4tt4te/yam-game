@@ -17,16 +17,11 @@ const reducer = (state = gameState, action = {}) => {
         newScore = newScore + roundScore;
       }
 
-      let displayedResults = rolls().values;
-
-      console.log("======");
-
       return {
         ...state,
 
-        /* Set the score */
         score: newScore,
-        results: displayedResults,
+        results: []
       };
 
     default:

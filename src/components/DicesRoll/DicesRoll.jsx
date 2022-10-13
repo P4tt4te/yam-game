@@ -26,18 +26,14 @@ const DicesRollScore = styled.section`
 
 export const DicesRoll = () => {
   const [query, setQuery] = useState(1); // Default value
-
   const { results, score } = useSelector((state) => state.gameReducer);
 
   /* Create a newState after a dispatch */
   const dispatch = useDispatch();
 
-  if (query > 20) {
-    setQuery(0);
-  }
-
-  if (query == null) {
-    setQuery(0);
+  /* Handle input completion */
+  if(query > 20) {
+    setQuery(1)
   }
 
   return (
@@ -45,12 +41,10 @@ export const DicesRoll = () => {
       <DicesRollTitle>Game Screen</DicesRollTitle>
       <DicesRollInput
         type="number"
+        max="20"
         onChange={(event) => setQuery(event.target.value)}
         placeholder="How many rolls?"
         value={query}
-        min="1"
-        max="20"
-        maxlength="2"
       />
       <Button
         name="Roll the dices!"
@@ -59,6 +53,7 @@ export const DicesRoll = () => {
       <DicesRollScore>Score: {score}</DicesRollScore>
       <DicesRollScore>
         <ul>
+          {/* {console.log(score)} */}
           Results |
           {results.map((item, index) => (
             <span key={index}> {item} | </span>

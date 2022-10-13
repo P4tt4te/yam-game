@@ -1,6 +1,6 @@
 export function rolls() {
   let score = 0;
-  let message = '';
+  let message = "Nothing"
 
   const values = [];
   for (let i = 0; i < 5; i++) {
@@ -18,20 +18,22 @@ export function rolls() {
 
   console.log(values);
 
-  if(haveSameItems([...values], 3)) {
-    console.log("Brelan");
-    score = score + 100
+  if (haveSameItems([...values], 3)) {
+    message = 'Brelan (+100pts)';
+    score = score + 100;
   }
 
-  if(haveSameItems([...values], 4)) {
-    console.log("Square");
-    score = score + 500
+  if (haveSameItems([...values], 4)) {
+    message = 'Square (+500pts)';
+    score = score + 400;
   }
 
-  if(haveSameItems([...values], 5)) {
-    console.log("Yam's");
-    score = score + 1000
+  if (haveSameItems([...values], 5)) {
+    message = "Yam's (+1000pts)";
+    score = score + 500;
   }
 
-  return { values, score };
+  console.log(message);
+
+  return { score };
 }
