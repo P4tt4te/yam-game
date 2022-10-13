@@ -1,6 +1,6 @@
 export function rolls() {
   let score = 0;
-  let message = "";
+  let message = '';
 
   const values = [];
   for (let i = 0; i < 5; i++) {
@@ -9,48 +9,29 @@ export function rolls() {
 
   /* Set scoring conditions */
   function haveSameItems(arr, n) {
-    let sameNumbers = 0;
-
-    arr.forEach((elmt) => {
-      if (elmt == n) {
-        sameNumbers++;
-      }
-    });
-
-    return sameNumbers;
+    let countObj = {};
+    for (let a of arr) {
+      countObj[a] = (countObj[a] || 0) + 1;
+    }
+    return Object.values(countObj).some((count) => count >= n);
   }
 
-  const numbersOfSameItems = [
-    haveSameItems(values, 1),
-    haveSameItems(values, 2),
-    haveSameItems(values, 3),
-    haveSameItems(values, 4),
-    haveSameItems(values, 5),
-    haveSameItems(values, 6),
-  ];
+  console.log(values);
 
-  numbersOfSameItems.forEach((nb) => {
-    if (nb == 5) {
-      /* Yam's */
-      score = score + 1000;
-      console.log("Yam's, + 1000 points");
-      console.log(values);
-    }
+  if(haveSameItems([...values], 3)) {
+    console.log("Brelan");
+    score = score + 100
+  }
 
-    if (nb == 4) {
-      /* Square */
-      score = score + 400;
-      console.log('Square, + 400 points');
-      console.log(values);
-    }
+  if(haveSameItems([...values], 4)) {
+    console.log("Square");
+    score = score + 500
+  }
 
-    if (nb == 3) {
-      /* Brelan */
-      score = score + 100;
-      console.log('Brelan, + 100 points');
-      console.log(values);
-    }
-  });
+  if(haveSameItems([...values], 5)) {
+    console.log("Yam's");
+    score = score + 1000
+  }
 
   return { values, score };
 }
