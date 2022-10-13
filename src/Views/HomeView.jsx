@@ -1,5 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { rollDices } from './../store/actions/actions-types';
+
+import { DicesRoll } from '../components/DicesRoll/DicesRoll';
 
 const HomeViewContainer = styled.section`
   border-radius: 2rem;
@@ -8,22 +13,24 @@ const HomeViewContainer = styled.section`
   background-color: #edf5f1;
 `;
 
-const AppTitle = styled.h1`
-  font-size: 3.2rem;
-  font-variation-settings: "wght" 700;
-`;
+export const HomeView = ({}) => {
+  /* Access to the store, read-only */
+  const { firstDiceResult, secondDiceResult, thirdDiceResult, total } =
+    useSelector((state) => state.gameReducer);
 
-export const HomeView = ({
-  username,
-  trips,
-  addSelectTrip,
-  trip,
-  dispatch,
-  changeSeats,
-}) => {
+  /* Create a newState after a dispatch */
+  const dispatch = useDispatch();
+
   return (
     <HomeViewContainer>
-      <p>Page home</p>
+      <DicesRoll
+        dispatch={dispatch}
+        rollDices={rollDices}
+        firstDiceResult={firstDiceResult}
+        secondDiceResult={secondDiceResult}
+        thirdDiceResult={thirdDiceResult}
+        total={total}
+      />
     </HomeViewContainer>
   );
 };
