@@ -45,11 +45,12 @@ export const StatsView = () => {
       <div>
         <StatsViewSubtitle>Scoring :</StatsViewSubtitle>
         <p>Paire = 20 points</p>
-        <p>Double Paire = 60 points</p>
+        <p>*Double Paire = 60 points</p>
         <p>Brelan = 100 points</p>
-        <p>Full = 200 points</p>
+        <p>*Full = 200 points</p>
         <p>Carré = 400 points</p>
         <p>Yam's = 1000 points</p>
+        <p><br />* = non disponible</p>
       </div>
       <StatsViewSubtitle>History of your games :</StatsViewSubtitle>
       <StatsViewListContainer>
