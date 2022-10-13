@@ -1,1 +1,1 @@
-export const ROLL_DICES = 'ROLL_DICES';
+export const ROLL_DICES = "ROLL_DICES";
