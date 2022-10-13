@@ -2,12 +2,18 @@ import { ADD_GAME_HISTORY } from '../constants/actions';
 
 /* Source of truth */
 const gameHistoryState = {
+  money: 0,
   history: [
     {
       tryLength: 100,
       brelan: 3,
       score: 300,
     },
+    {
+        tryLength: 100,
+        brelan: 10,
+        score: 300,
+      },
   ],
 };
 
