@@ -29,6 +29,10 @@ export const StatsView = () => {
       <StatsViewTitle>Your stats 📊</StatsViewTitle>
       <StatsViewSubtitle>history of your games</StatsViewSubtitle>
       <div>
+        <h3>Scoring :</h3>
+        <p>Brelan = 100 points</p>
+      </div>
+      <div>
         {history.length > 0 ? (
           history.map((game, key) => (
             <div key={key}>
