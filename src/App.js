@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
+import { HomeView } from './Views/HomeView';
+import { StatsView } from "./Views/StatsView";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>yam game</div>
+
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/stats">Stats</Link>
+        </nav>
       </header>
+      <Routes>
+        <Route path="/" element={<HomeView />} />
+        <Route path="/stats" element={<StatsView />} />
+        <Route path="*" element={<p>Page 404</p>} />
+      </Routes>
     </div>
   );
 }
