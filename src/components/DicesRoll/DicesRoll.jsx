@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { Button } from './../Button/Button';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { rollDices } from './../../store/actions/actions-types';
+
 const DicesRollTitle = styled.h1`
   font-size: 3.2rem;
   margin-bottom: 1.6rem;
+`;
+
+const DicesRollInput = styled.input`
+  padding: 1.6rem;
+  background-color: white;
+  margin-bottom: 1.6rem;
+  border-radius: 1.2rem;
+  width: calc(100% - 3.2rem);
 `;
 
 const DicesRollScore = styled.section`
@@ -13,14 +24,42 @@ const DicesRollScore = styled.section`
   font-size: 2rem;
 `;
 
-export const DicesRoll = ({ dispatch, rollDices, score, result }) => {
+export const DicesRoll = () => {
+  const [query, setQuery] = useState(1); // Default value
+  const { results, score } = useSelector((state) => state.gameReducer);
+
+  /* Create a newState after a dispatch */
+  const dispatch = useDispatch();
+
+  /* Handle input completion */
+  if(query > 20) {
+    setQuery(1)
+  }
+
   return (
     <div className="DicesRoll">
       <DicesRollTitle>Game Screen</DicesRollTitle>
-      <input type="number" placeholder='How many rolls?' />
-      <Button name="Roll the dices!" onClick={() => dispatch(rollDices())} />
-      <DicesRollScore>Result: {result}</DicesRollScore>
+      <DicesRollInput
+        type="number"
+        max="20"
+        onChange={(event) => setQuery(event.target.value)}
+        placeholder="How many rolls?"
+        value={query}
+      />
+      <Button
+        name="Roll the dices!"
+        onClick={() => dispatch(rollDices(query))}
+      />
       <DicesRollScore>Score: {score}</DicesRollScore>
+      <DicesRollScore>
+        <ul>
+          {/* {console.log(score)} */}
+          Results |
+          {results.map((item, index) => (
+            <span key={index}> {item} | </span>
+          ))}
+        </ul>
+      </DicesRollScore>
     </div>
   );
 };

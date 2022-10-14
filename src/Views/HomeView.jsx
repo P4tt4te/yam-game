@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { rollDices } from './../store/actions/actions-types';
-
 import { DicesRoll } from '../components/DicesRoll/DicesRoll';
 
 const HomeViewContainer = styled.section`
@@ -15,23 +12,10 @@ const HomeViewContainer = styled.section`
 
 export const HomeView = ({}) => {
   /* Access to the store, read-only */
-  const { firstDiceResult, secondDiceResult, thirdDiceResult, result, score } =
-    useSelector((state) => state.gameReducer);
-
-  /* Create a newState after a dispatch */
-  const dispatch = useDispatch();
 
   return (
     <HomeViewContainer>
-      <DicesRoll
-        dispatch={dispatch}
-        rollDices={rollDices}
-        firstDiceResult={firstDiceResult}
-        secondDiceResult={secondDiceResult}
-        thirdDiceResult={thirdDiceResult}
-        result={result}
-        score={score}
-      />
+      <DicesRoll />
     </HomeViewContainer>
   );
 };
