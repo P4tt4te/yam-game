@@ -64,7 +64,7 @@ export const StatsView = () => {
             </StatsViewCardContainer>
           ))
         ) : (
-          <p>History clear.</p>
+          <p>No game played.</p>
         )}
       </StatsViewListContainer>
     </StatsViewContainer>

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Button } from './../Button/Button';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { rollDices } from './../../store/actions/actions-types';
+import { addGameHistory, rollDices } from './../../store/actions/actions-types';
 
 const DicesRollTitle = styled.h1`
   font-size: 3.2rem;
@@ -27,14 +27,33 @@ const DicesRollScore = styled.section`
 export const DicesRoll = () => {
   const [query, setQuery] = useState(1); // Default value
   const { results, score } = useSelector((state) => state.gameReducer);
+  const [history, setHistory] = useState(false);
 
   /* Create a newState after a dispatch */
   const dispatch = useDispatch();
 
   /* Handle input completion */
-  if(query > 20) {
-    setQuery(1)
+  if (query > 20) {
+    setQuery(1);
   }
+
+  const handleGame = () => {
+    dispatch(rollDices(query));
+    setHistory(true);
+  };
+
+  useEffect(() => {
+    if (history) {
+      dispatch(
+        addGameHistory({
+          tryLength: query,
+          brelan: 1,
+          score: score,
+        })
+      );
+    }
+    setHistory(false);
+  }, [history]);
 
   return (
     <div className="DicesRoll">
@@ -46,10 +65,7 @@ export const DicesRoll = () => {
         placeholder="How many rolls?"
         value={query}
       />
-      <Button
-        name="Roll the dices!"
-        onClick={() => dispatch(rollDices(query))}
-      />
+      <Button name="Roll the dices!" onClick={handleGame} />
       <DicesRollScore>Score: {score}</DicesRollScore>
       <DicesRollScore>
         <ul>

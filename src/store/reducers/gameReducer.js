@@ -21,7 +21,7 @@ const reducer = (state = gameState, action = {}) => {
         ...state,
 
         score: newScore,
-        results: []
+        results: [],
       };
 
     default:
