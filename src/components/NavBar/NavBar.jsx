@@ -60,7 +60,7 @@ export const NavBar = () => {
 
   return (
     <StyledNavBar>
-      <LogoContainer>Yam game</LogoContainer>
+      <LogoContainer>🎲 Yam game</LogoContainer>
       <NavLinksContainer>
         {linksNames.map((linkname, i) => {
           return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { countCombo } from '../store/helpers/countCombo';
 
 const StatsViewContainer = styled.section`
   border-radius: 2rem;
@@ -31,9 +32,9 @@ const StatsViewCardContainer = styled.div`
 `;
 
 const StatsViewListContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 export const StatsView = () => {
@@ -50,21 +51,29 @@ export const StatsView = () => {
         <p>*Full = 200 points</p>
         <p>Carré = 400 points</p>
         <p>Yam's = 1000 points</p>
-        <p><br />* = non disponible</p>
+        <p>
+          <br />* = non disponible
+        </p>
       </div>
       <StatsViewSubtitle>History of your games :</StatsViewSubtitle>
       <StatsViewListContainer>
         {history.length > 0 ? (
-          history.map((game, key) => (
-            <StatsViewCardContainer key={key}>
-              <p># {key + 1}</p>
-              <p>Nombre de lancer : {game.tryLength}</p>
-              <p>Nombre de brelan : {game.brelan}</p>
-              <p>Score : {game.score}</p>
-            </StatsViewCardContainer>
-          ))
+          history.map((game, key) => {
+            let combos = countCombo(game.results);
+            return (
+              <StatsViewCardContainer key={key}>
+                <p># {key + 1}</p>
+                <p>Nombre de lancer : {game.tryLength}</p>
+                <p>Nombre de brelan : {combos.brelan}</p>
+                <p>Nombre de carré : {combos.square}</p>
+                <p>Nombre de yams : {combos.yams}</p>
+
+                <p>Score : {game.score}</p>
+              </StatsViewCardContainer>
+            );
+          })
         ) : (
-          <p>History clear.</p>
+          <p>No game played.</p>
         )}
       </StatsViewListContainer>
     </StatsViewContainer>

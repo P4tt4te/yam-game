@@ -11,17 +11,22 @@ const reducer = (state = gameState, action = {}) => {
   switch (action.type) {
     case ROLL_DICES:
       let newScore = 0;
+      let newResults = [];
 
       for (let i = 0; i < action.payload; i++) {
-        let roundScore = rolls().score; // returns a score
-        newScore = newScore + roundScore;
+        let roundResult = rolls();
+        newScore = newScore + roundResult.score;
+        newResults.push({
+          results: roundResult.results,
+          message: roundResult.message,
+        });
       }
 
       return {
         ...state,
 
         score: newScore,
-        results: []
+        results: newResults,
       };
 
     default:
