@@ -1,6 +1,10 @@
+export const BRELAN = 'Brelan (+100pts)';
+export const SQUARE = 'Square (+500pts)';
+export const YAMS = "Yam's (+1000pts)";
+
 export function rolls() {
   let score = 0;
-  let message = "Nothing"
+  let message = 'Nothing';
 
   const values = [];
   for (let i = 0; i < 5; i++) {
@@ -19,21 +23,21 @@ export function rolls() {
   console.log(values);
 
   if (haveSameItems([...values], 3)) {
-    message = 'Brelan (+100pts)';
+    message = BRELAN;
     score = score + 100;
   }
 
   if (haveSameItems([...values], 4)) {
-    message = 'Square (+500pts)';
+    message = SQUARE;
     score = score + 400;
   }
 
   if (haveSameItems([...values], 5)) {
-    message = "Yam's (+1000pts)";
+    message = YAMS;
     score = score + 500;
   }
 
   console.log(message);
 
-  return { score };
+  return { score, results: values, message };
 }

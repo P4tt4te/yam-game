@@ -47,7 +47,7 @@ export const DicesRoll = () => {
       dispatch(
         addGameHistory({
           tryLength: query,
-          brelan: 1,
+          results: results,
           score: score,
         })
       );
@@ -72,7 +72,7 @@ export const DicesRoll = () => {
           {/* {console.log(score)} */}
           Results |
           {results.map((item, index) => (
-            <span key={index}> {item} | </span>
+            <span key={index}> {item.results} combo : {item.message} | </span>
           ))}
         </ul>
       </DicesRollScore>
