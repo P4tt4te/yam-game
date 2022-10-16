@@ -12,8 +12,12 @@ const reducer = (state = gameHistoryState, action = {}) => {
       const history = [...state.history];
       history.push(action.payload);
 
+      let score = action.payload.score;
+
+
       return {
         ...state,
+        money : state.money + score / 100,
         history,
       };
 
