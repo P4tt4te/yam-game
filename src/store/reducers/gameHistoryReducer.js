@@ -2,13 +2,8 @@ import { ADD_GAME_HISTORY } from '../constants/actions';
 
 /* Source of truth */
 const gameHistoryState = {
-  history: [
-    {
-      tryLength: 100,
-      brelan: 3,
-      score: 300,
-    },
-  ],
+  money: 0,
+  history: [],
 };
 
 const reducer = (state = gameHistoryState, action = {}) => {
@@ -17,8 +12,12 @@ const reducer = (state = gameHistoryState, action = {}) => {
       const history = [...state.history];
       history.push(action.payload);
 
+      let score = action.payload.score;
+
+
       return {
         ...state,
+        money : state.money + score / 100,
         history,
       };
 

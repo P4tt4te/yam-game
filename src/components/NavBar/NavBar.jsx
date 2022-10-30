@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '../Button/Button';
+import { useSelector } from 'react-redux';
 
 const StyledNavBar = styled.div`
   font-size: 1.2rem;
@@ -12,8 +13,10 @@ const StyledNavBar = styled.div`
   width: 24rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   position: sticky;
   top: 0;
+  min-height: 95vh;
 `;
 
 const LogoContainer = styled.div`
@@ -31,8 +34,18 @@ const NavLinksContainer = styled.div`
   width: 100%;
 `;
 
+const CoinsContainer = styled.div`
+    background: #d6831e;
+    color: white;
+    font-size: 3.2rem;
+    font-weight: 500;
+    padding: 1rem;
+    border-radius: 1rem;
+`;
+
 export const NavBar = () => {
   const location = useLocation();
+  const { money } = useSelector((state) => state.gameHistoryReducer);
 
   const linksNames = [
     {
@@ -47,7 +60,7 @@ export const NavBar = () => {
 
   return (
     <StyledNavBar>
-      <LogoContainer>Yam game</LogoContainer>
+      <LogoContainer>🎲 Yam game</LogoContainer>
       <NavLinksContainer>
         {linksNames.map((linkname, i) => {
           return (
@@ -62,6 +75,9 @@ export const NavBar = () => {
           );
         })}
       </NavLinksContainer>
+        <CoinsContainer>
+            {money} Coins
+        </CoinsContainer>
     </StyledNavBar>
   );
 };

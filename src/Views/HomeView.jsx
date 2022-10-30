@@ -1,5 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+
+import { DicesRoll } from '../components/DicesRoll/DicesRoll';
 
 const HomeViewContainer = styled.section`
   border-radius: 2rem;
@@ -8,22 +10,12 @@ const HomeViewContainer = styled.section`
   background-color: #edf5f1;
 `;
 
-const AppTitle = styled.h1`
-  font-size: 3.2rem;
-  font-variation-settings: "wght" 700;
-`;
+export const HomeView = ({}) => {
+  /* Access to the store, read-only */
 
-export const HomeView = ({
-  username,
-  trips,
-  addSelectTrip,
-  trip,
-  dispatch,
-  changeSeats,
-}) => {
   return (
     <HomeViewContainer>
-      <p>Page home</p>
+      <DicesRoll />
     </HomeViewContainer>
   );
 };

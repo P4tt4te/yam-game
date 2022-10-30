@@ -1,25 +1,32 @@
-import { ROLL_DICES } from "../constants/actions";
+import { ROLL_DICES } from '../constants/actions';
+import { rolls } from '../helpers/rolls';
 
 /* Source of truth */
 const gameState = {
-  firstDiceResult: null,
-  secondDiceResult: null,
-  thirdDiceResult: null,
-  leftRolls: 20,
-  total: 0,
+  score: 0,
+  results: [],
 };
 
 const reducer = (state = gameState, action = {}) => {
   switch (action.type) {
     case ROLL_DICES:
+      let newScore = 0;
+      let newResults = [];
+
+      for (let i = 0; i < action.payload; i++) {
+        let roundResult = rolls();
+        newScore = newScore + roundResult.score;
+        newResults.push({
+          results: roundResult.results,
+          message: roundResult.message,
+        });
+      }
 
       return {
         ...state,
-        // attribuer une valeur random à firstDice
-        // attribuer une valeur random à secondDice
-        // attribuer une valeur random à thirdDice
-        
-        // set total = la somme des résultats
+
+        score: newScore,
+        results: newResults,
       };
 
     default:

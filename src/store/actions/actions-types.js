@@ -1,9 +1,10 @@
 import { ROLL_DICES, ADD_GAME_HISTORY } from '../constants/actions';
 
 /* Dispatch functions */
-export const rollDices = () => {
+export const rollDices = (payload) => {
   return {
     type: ROLL_DICES,
+    payload: payload,
   };
 };
 
